@@ -12,7 +12,7 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
+        backgroundColor: Colors.teal[300],
       ),
     );
   }

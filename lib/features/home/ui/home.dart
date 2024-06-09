@@ -33,6 +33,10 @@ class _HomeState extends State<Home> {
         } else if (state is HomeNavigateTowishlistPageActionState) {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => Wishlist()));
+        }else if(state is HomeProductItemCartedActionState){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Item Carted')));
+        }else if(state is HomeProductItemWishlistedActionState){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Item WishListed')));
         }
       },
       builder: (context, state) {
@@ -75,7 +79,9 @@ class _HomeState extends State<Home> {
               body: ListView.builder(
                 itemCount: successState.product.length,
                 itemBuilder: (context, index){
-                  return ProductTileWidget(productDataModel: successState.product[index]);
+                  return ProductTileWidget(
+                    homeBloc: homeBloc,
+                    productDataModel: successState.product[index]);
                 }),
             );
           case HomeErrorState:

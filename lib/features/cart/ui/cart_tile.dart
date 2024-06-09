@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app_bloc/features/cart/bloc/cart_bloc_bloc.dart';
 import 'package:grocery_app_bloc/features/home/bloc/home_bloc_bloc.dart';
 import 'package:grocery_app_bloc/features/home/model/home_product_data.dart';
 
-class ProductTileWidget extends StatelessWidget {
+class CartTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
-  final HomeBloc homeBloc;
-  const ProductTileWidget({super.key, required this.productDataModel, required this.homeBloc});
+  final CartBlocBloc cartBloc;
+  const CartTileWidget({super.key, required this.productDataModel, required this.cartBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +43,9 @@ class ProductTileWidget extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        homeBloc.add(HomeProductWishlistButtonClickEvent(
-                          clickedProduct: productDataModel
-                        ));
+                        // homeBloc.add(HomeProductWishlistButtonClickEvent(
+                        //   clickedProduct: productDataModel
+                        // ));
                       },
                       icon: const Icon(
                         Icons.favorite_border,
@@ -52,13 +53,13 @@ class ProductTileWidget extends StatelessWidget {
                       )),
                   IconButton(
                       onPressed: () {
-                        homeBloc.add(HomeProductCartButtonClickEvent(
-                          clickedProduct: productDataModel
+                        cartBloc.add(CartRemoveFromCartEvents(
+                          productDataModel: productDataModel,
                         ));
 
                       },
                       icon: const Icon(
-                        Icons.shopping_bag_outlined,
+                        Icons.shopping_bag,
                         color: Colors.black,
                       ))
                 ],
